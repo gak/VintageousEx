@@ -1,12 +1,12 @@
 # TODO(guillermooo): All of this functionality, along with key bindings, rather
 # belongs in Vintage, but we need to extract the necessary functions out of
-# VintageEx first. This is a temporary solution.
+# VintageousEx first. This is a temporary solution.
 
 import sublime
 import sublime_plugin
 
-from VintageEx.vex import ex_location
-import VintageEx.ex_commands
+from VintageousEx.vex import ex_location
+import VintageousEx.ex_commands
 
 
 def compute_flags(view, term):
@@ -77,7 +77,7 @@ class SearchImpl(object):
         # handle search restart
         if not next_match:
             if self.reversed:
-                sublime.status_message("VintageEx: search hit TOP, continuing at BOTTOM")
+                sublime.status_message("VintageousEx: search hit TOP, continuing at BOTTOM")
                 line_nr = ex_location.reverse_search(self.view, self.cmd, flags=self.flags)
                 if line_nr:
                     pt = self.view.text_point(line_nr - 1, 0)
@@ -88,7 +88,7 @@ class SearchImpl(object):
                                                              line.end(),
                                                              self.flags)
             else:
-                sublime.status_message("VintageEx: search hit BOTTOM, continuing at TOP")
+                sublime.status_message("VintageousEx: search hit BOTTOM, continuing at TOP")
                 next_match = self.view.find(self.cmd, 0, sel.end())
         # handle result
         if next_match:
@@ -100,30 +100,30 @@ class SearchImpl(object):
                 self.view.sel().add(next_match)
             self.view.show(next_match)
         else:
-            sublime.status_message("VintageEx: Pattern not found:" + self.cmd)
+            sublime.status_message("VintageousEx: Pattern not found:" + self.cmd)
 
 
 class ViRepeatSearchBackward(sublime_plugin.TextCommand):
    def run(self, edit):
-        if ex_commands.VintageExState.search_buffer_type == 'pattern_search':
+        if ex_commands.VintageousExState.search_buffer_type == 'pattern_search':
             SearchImpl(self.view, "?" + SearchImpl.last_term,
                       start_sel=self.view.sel()).search()
-        elif ex_commands.VintageExState.search_buffer_type == 'find_under':
+        elif ex_commands.VintageousExState.search_buffer_type == 'find_under':
             self.view.window().run_command("find_prev", {"select_text": False})
 
 
 class ViRepeatSearchForward(sublime_plugin.TextCommand):
     def run(self, edit):
-        if ex_commands.VintageExState.search_buffer_type == 'pattern_search':
+        if ex_commands.VintageousExState.search_buffer_type == 'pattern_search':
             SearchImpl(self.view, SearchImpl.last_term,
                        start_sel=self.view.sel()).search()
-        elif ex_commands.VintageExState.search_buffer_type == 'find_under':
+        elif ex_commands.VintageousExState.search_buffer_type == 'find_under':
             self.view.window().run_command("find_next", {"select_text": False})
 
 
 class ViFindUnder(sublime_plugin.TextCommand):
     def run(self, edit, forward=True):
-        ex_commands.VintageExState.search_buffer_type = 'find_under'
+        ex_commands.VintageousExState.search_buffer_type = 'find_under'
         if forward:
             self.view.window().run_command('find_under', {'select_text': False})
         else:
@@ -142,10 +142,10 @@ class ViSearch(sublime_plugin.TextCommand):
         self._restore_sel()
         try:
             SearchImpl(self.view, s, start_sel=self.original_sel).search()
-            ex_commands.VintageExState.search_buffer_type = 'pattern_search'
+            ex_commands.VintageousExState.search_buffer_type = 'pattern_search'
         except RuntimeError as e:
             if 'parsing' in str(e):
-                print("VintageEx: Regex parsing error. Incomplete pattern: %s" % s)
+                print("VintageousEx: Regex parsing error. Incomplete pattern: %s" % s)
             else:
                 raise e
         self.original_sel = None
@@ -160,7 +160,7 @@ class ViSearch(sublime_plugin.TextCommand):
                        start_sel=self.original_sel).search()
         except RuntimeError as e:
             if 'parsing' in str(e):
-                print("VintageEx: Regex parsing error. Expected error." )
+                print("VintageousEx: Regex parsing error. Expected error." )
             else:
                 raise e
 

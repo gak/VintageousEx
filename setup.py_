@@ -581,7 +581,7 @@ class test(Command):
 
 
 setup(cmdclass={'spa': spa, 'install': install, 'test': test},
-      name='VintageEx',
+      name='VintageousEx',
       version=PACKAGE_VERSION,
       description='An :ex more for Sublime Text',
       author='Guillermo López',

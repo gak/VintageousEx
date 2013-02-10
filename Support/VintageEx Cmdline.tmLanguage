@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>VintageEx Command Line</string>
+	<string>VintageousEx Command Line</string>
 	<key>scopeName</key>
 	<string>text.excmdline</string>
 	<key>uuid</key>

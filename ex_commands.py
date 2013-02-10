@@ -13,12 +13,12 @@ import subprocess
 # TODO: This is not available. Integrate with Vintageous instead.
 # from Vintage.vintage import g_registers
 
-from VintageEx.plat.windows import get_oem_cp
-from VintageEx.plat.windows import get_startup_info
-from VintageEx.vex import ex_error
-from VintageEx.vex import ex_range
-from VintageEx.vex import shell
-from VintageEx.vex import parsers
+from VintageousEx.plat.windows import get_oem_cp
+from VintageousEx.plat.windows import get_startup_info
+from VintageousEx.vex import ex_error
+from VintageousEx.vex import ex_range
+from VintageousEx.vex import shell
+from VintageousEx.vex import parsers
 
 GLOBAL_RANGES = []
 
@@ -26,7 +26,7 @@ CURRENT_LINE_RANGE = {'left_ref': '.', 'left_offset': 0, 'left_search_offsets': 
                       'right_ref': None, 'right_offset': 0, 'right_search_offsets': []}
 
 
-class VintageExState(object):
+class VintageousExState(object):
     # When repeating searches, determines which search term to use: the current
     # word or the latest search term.
     # Values: find_under, search_pattern
@@ -143,28 +143,28 @@ class ExShell(sublime_plugin.TextCommand):
 
     def run(self, edit):
         if sublime.platform() == 'linux':
-            term = self.view.settings().get('vintageex_linux_terminal')
+            term = self.view.settings().get('VintageousEx_linux_terminal')
             term = term or os.environ.get('COLORTERM') or os.environ.get("TERM")
             if not term:
-                sublime.status_message("VintageEx: Not terminal name found.")
+                sublime.status_message("VintageousEx: Not terminal name found.")
                 return
             try:
                 self.open_shell([term, '-e', 'bash']).wait()
             except Exception as e:
                 print(e)
-                sublime.status_message("VintageEx: Error while executing command through shell.")
+                sublime.status_message("VintageousEx: Error while executing command through shell.")
                 return
         elif sublime.platform() == 'osx':
-            term = self.view.settings().get('vintageex_osx_terminal')
+            term = self.view.settings().get('VintageousEx_osx_terminal')
             term = term or os.environ.get('COLORTERM') or os.environ.get("TERM")
             if not term:
-                sublime.status_message("VintageEx: Not terminal name found.")
+                sublime.status_message("VintageousEx: Not terminal name found.")
                 return
             try:
                 self.open_shell([term, '-e', 'bash']).wait()
             except Exception as e:
                 print(e)
-                sublime.status_message("VintageEx: Error while executing command through shell.")
+                sublime.status_message("VintageousEx: Error while executing command through shell.")
                 return
         elif sublime.platform() == 'windows':
             self.open_shell(['cmd.exe', '/k']).wait()
@@ -190,14 +190,14 @@ class ExReadShellOut(sublime_plugin.TextCommand):
                     the_shell = self.view.settings().get('linux_shell')
                     the_shell = the_shell or os.path.expandvars("$SHELL")
                     if not the_shell:
-                        sublime.status_message("VintageEx: No shell name found.")
+                        sublime.status_message("VintageousEx: No shell name found.")
                         return
                     try:
                         p = subprocess.Popen([the_shell, '-c', name],
                                                             stdout=subprocess.PIPE)
                     except Exception as e:
                         print(e)
-                        sublime.status_message("VintageEx: Error while executing command through shell.")
+                        sublime.status_message("VintageousEx: Error while executing command through shell.")
                         return
                     self.view.insert(edit, s.begin(), p.communicate()[0][:-1])
             elif sublime.platform() == 'windows':
@@ -260,7 +260,7 @@ class ExMap(sublime_plugin.TextCommand):
 class ExAbbreviate(sublime_plugin.TextCommand):
     # for them moment, just open a completions file.
     def run(self, edit):
-        abbs_file_name = 'VintageEx Abbreviations.sublime-completions'
+        abbs_file_name = 'VintageousEx Abbreviations.sublime-completions'
         abbreviations = os.path.join(sublime.packages_path(),
                                      'User/' + abbs_file_name)
         if not os.path.exists(abbreviations):
@@ -287,7 +287,7 @@ class ExWriteFile(sublime_plugin.TextCommand):
                 subcmd=''):
 
         if file_name and target_redirect:
-            sublime.status_message('VintageEx: Too many arguments.')
+            sublime.status_message('VintageousEx: Too many arguments.')
             return
 
         appending = operator == '>>'
@@ -369,7 +369,7 @@ class ExFile(sublime_plugin.TextCommand):
         else:
             msg += " %d line(s) --%d%%--" % (lines, int(percent))
 
-        sublime.status_message('VintageEx: %s' % msg)
+        sublime.status_message('VintageousEx: %s' % msg)
 
 
 class ExMove(sublime_plugin.TextCommand):
@@ -481,8 +481,8 @@ class ExSubstitute(sublime_plugin.TextCommand):
             try:
                 parts = parsers.s_cmd.split(pattern)
             except SyntaxError as e:
-                sublime.status_message("VintageEx: (substitute) %s" % e)
-                print("VintageEx: (substitute) %s" % e)
+                sublime.status_message("VintageousEx: (substitute) %s" % e)
+                print("VintageousEx: (substitute) %s" % e)
                 return
             else:
                 if len(parts) == 4:
@@ -508,8 +508,8 @@ class ExSubstitute(sublime_plugin.TextCommand):
         try:
             pattern = re.compile(pattern, flags=computed_flags)
         except Exception as e:
-            sublime.status_message("VintageEx [regex error]: %s ... in pattern '%s'" % (e.message, pattern))
-            print("VintageEx [regex error]: %s ... in pattern '%s'" % (e.message, pattern))
+            sublime.status_message("VintageousEx [regex error]: %s ... in pattern '%s'" % (e.message, pattern))
+            print("VintageousEx [regex error]: %s ... in pattern '%s'" % (e.message, pattern))
             return
 
         replace_count = 0 if (flags and 'g' in flags) else 1
@@ -578,7 +578,7 @@ class ExGlobal(sublime_plugin.TextCommand):
         try:
             global_pattern, subcmd = parsers.g_cmd.split(pattern)
         except ValueError:
-            msg = "VintageEx: Bad :global pattern. (%s)" % pattern
+            msg = "VintageousEx: Bad :global pattern. (%s)" % pattern
             sublime.status_message(msg)
             print(msg)
             return
@@ -598,7 +598,7 @@ class ExGlobal(sublime_plugin.TextCommand):
             try:
                 match = re.search(global_pattern, self.view.substr(r))
             except Exception as e:
-                msg = "VintageEx (global): %s ... in pattern '%s'" % (str(e), global_pattern)
+                msg = "VintageousEx (global): %s ... in pattern '%s'" % (str(e), global_pattern)
                 sublime.status_message(msg)
                 print(msg)
                 return
@@ -756,7 +756,7 @@ class ExListRegisters(sublime_plugin.TextCommand):
 
     def run(self, edit):
         if not g_registers:
-            sublime.status_message('VintageEx: no registers.')
+            sublime.status_message('VintageousEx: no registers.')
         self.view.window().show_quick_panel(
             ['"{0}   {1}'.format(k, v) for k, v in g_registers.items()],
             self.on_done)

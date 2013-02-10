@@ -37,7 +37,7 @@ def get_error_message(error_code):
 
 
 def display_error(error_code, arg='', log=False):
-    err_fmt = "VintageEx: E%d %s"
+    err_fmt = "VintageousEx: E%d %s"
     if arg:
         err_fmt += " (%s)" % arg
     msg = get_error_message(error_code)
@@ -45,4 +45,4 @@ def display_error(error_code, arg='', log=False):
 
 
 def handle_not_implemented():
-    sublime.status_message('VintageEx: Not implemented')
+    sublime.status_message('VintageousEx: Not implemented')

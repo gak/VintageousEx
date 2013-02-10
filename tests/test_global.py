@@ -1,6 +1,6 @@
 import unittest
 
-from VintageEx.vex.parsers.g_cmd import GlobalLexer
+from VintageousEx.vex.parsers.g_cmd import GlobalLexer
 
 
 class TestGlobalLexer(unittest.TestCase):

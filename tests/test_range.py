@@ -1,15 +1,15 @@
 import unittest
 import re
 
-from VintageEx.test_runner import g_test_view
-from VintageEx.tests import select_bof
-from VintageEx.tests import select_eof
-from VintageEx.tests import select_line
+from VintageousEx.test_runner import g_test_view
+from VintageousEx.tests import select_bof
+from VintageousEx.tests import select_eof
+from VintageousEx.tests import select_line
 
-from VintageEx.vex.ex_range import EX_RANGE
-from VintageEx.vex.ex_range import new_calculate_range
-from VintageEx.vex.ex_range import calculate_relative_ref
-from VintageEx.vex.ex_range import calculate_address
+from VintageousEx.vex.ex_range import EX_RANGE
+from VintageousEx.vex.ex_range import new_calculate_range
+from VintageousEx.vex.ex_range import calculate_relative_ref
+from VintageousEx.vex.ex_range import calculate_address
 
 
 class TestCalculateRelativeRef(unittest.TestCase):

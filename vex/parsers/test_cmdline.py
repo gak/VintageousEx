@@ -1,5 +1,5 @@
 import unittest
-from VintageEx.vex.parsers import cmd_line
+from VintageousEx.vex.parsers import cmd_line
 
 
 class ParserBase(unittest.TestCase):

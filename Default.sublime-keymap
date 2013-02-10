@@ -13,11 +13,11 @@
 	// { "keys": ["/"], "command": "vi_search", "context": [{ "key": "setting.command_mode" }], "args": {"initial_text": "/"}},
 	// { "keys": ["?"], "command": "vi_search", "context": [{ "key": "setting.command_mode" }], "args": {"initial_text": "?"}},
 
-	// Override these ones so that the necessary state is kept in VintageEx.
+	// Override these ones so that the necessary state is kept in VintageousEx.
 	// { "keys": ["n"], "command": "vi_repeat_search_forward", "context": [{ "key": "setting.command_mode" }]},
 	// { "keys": ["N"], "command": "vi_repeat_search_backward", "context": [{ "key": "setting.command_mode" }]},
 
-	// Override these ones so that the necessary state is kept in VintageEx.
+	// Override these ones so that the necessary state is kept in VintageousEx.
 	// { "keys": ["*"], "command": "vi_find_under", "context": [{ "key": "setting.command_mode" }]},
 	// { "keys": ["#"], "command": "vi_find_under", "args": {"forward": false}, "context": [{ "key": "setting.command_mode" }]}
 ]

@@ -2,17 +2,17 @@ import sublime
 
 import unittest
 
-from VintageEx.test_runner import g_test_view
-from VintageEx.tests import select_line
+from VintageousEx.test_runner import g_test_view
+from VintageousEx.tests import select_line
 
-from VintageEx.ex_location import get_line_nr
-from VintageEx.ex_location import find_eol
-from VintageEx.ex_location import find_bol
-from VintageEx.ex_location import find_line
-from VintageEx.ex_location import search_in_range
-from VintageEx.ex_location import find_last_match
-from VintageEx.ex_location import reverse_search
-from VintageEx.ex_range import calculate_relative_ref
+from VintageousEx.ex_location import get_line_nr
+from VintageousEx.ex_location import find_eol
+from VintageousEx.ex_location import find_bol
+from VintageousEx.ex_location import find_line
+from VintageousEx.ex_location import search_in_range
+from VintageousEx.ex_location import find_last_match
+from VintageousEx.ex_location import reverse_search
+from VintageousEx.ex_range import calculate_relative_ref
 
 
 class TestHelpers(unittest.TestCase):

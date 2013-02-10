@@ -9,9 +9,9 @@ push-location $root
 	remove-item ".\MANIFEST" -erroraction silentlycontinue
 	start-process "python" -argumentlist ".\setup.py","spa" -NoNewWindow -Wait
 
-	(get-item ".\dist\VintageEx.sublime-package").fullname | clip.exe
+	(get-item ".\dist\VintageousEx.sublime-package").fullname | clip.exe
 pop-location
 
 if (-not $DontUpload) {
-	start-process "https://bitbucket.org/guillermooo/vintageex/downloads"
+	start-process "https://bitbucket.org/guillermooo/VintageousEx/downloads"
 }

@@ -1,9 +1,9 @@
 import unittest
 
-from VintageEx.vex.parsers.s_cmd import SubstituteLexer
-from VintageEx.vex.parsers.parsing import RegexToken
-from VintageEx.vex.parsers.parsing import Lexer
-from VintageEx.vex.parsers.parsing import EOF
+from VintageousEx.vex.parsers.s_cmd import SubstituteLexer
+from VintageousEx.vex.parsers.parsing import RegexToken
+from VintageousEx.vex.parsers.parsing import Lexer
+from VintageousEx.vex.parsers.parsing import EOF
 
 
 class TestRegexToken(unittest.TestCase):

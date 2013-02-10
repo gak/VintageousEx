@@ -1,7 +1,7 @@
-import VintageEx.plat
-import VintageEx.plat.linux
-import VintageEx.plat.osx
-import VintageEx.plat.windows
+import VintageousEx.plat
+import VintageousEx.plat.linux
+import VintageousEx.plat.osx
+import VintageousEx.plat.windows
 
 
 def run_and_wait(view, cmd):

@@ -1,9 +1,9 @@
 import sublime
 import sublime_plugin
 
-from VintageEx.vex.ex_command_parser import parse_command
-from VintageEx.vex.ex_command_parser import EX_COMMANDS
-from VintageEx.vex import ex_error
+from VintageousEx.vex.ex_command_parser import parse_command
+from VintageousEx.vex.ex_command_parser import EX_COMMANDS
+from VintageousEx.vex import ex_error
 
 
 COMPLETIONS = sorted([x[0] for x in EX_COMMANDS.keys()])
@@ -39,7 +39,7 @@ class ViColonInput(sublime_plugin.WindowCommand):
             return
         v = self.window.show_input_panel('', initial_text,
                                                     self.on_done, None, None)
-        v.set_syntax_file('Packages/VintageEx/Support/VintageEx Cmdline.tmLanguage')
+        v.set_syntax_file('Packages/VintageousEx/Support/VintageousEx Cmdline.tmLanguage')
         v.settings().set('gutter', False)
         v.settings().set('rulers', [])
 

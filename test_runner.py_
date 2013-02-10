@@ -6,9 +6,9 @@ import unittest
 import StringIO
 
 
-TEST_DATA_FILE_BASENAME = 'vintageex_test_data.txt'
+TEST_DATA_FILE_BASENAME = 'VintageousEx_test_data.txt'
 TEST_DATA_PATH = os.path.join(sublime.packages_path(),
-                              'VintageEx/tests/data/%s' % TEST_DATA_FILE_BASENAME)
+                              'VintageousEx/tests/data/%s' % TEST_DATA_FILE_BASENAME)
 
 
 g_test_view = None
@@ -32,7 +32,7 @@ def print_to_view(view, obtain_content):
     return view
 
 
-class ShowVintageExTestSuites(sublime_plugin.WindowCommand):
+class ShowVintageousExTestSuites(sublime_plugin.WindowCommand):
     def run(self):
         self.window.show_quick_panel(sorted(test_suites.keys()), self.run_suite)
 
@@ -46,9 +46,9 @@ class ShowVintageExTestSuites(sublime_plugin.WindowCommand):
         self.window.run_command(command_to_run, dict(suite_name=suite_name))
 
 
-class VintageExRunSimpleTestsCommand(sublime_plugin.WindowCommand):
+class VintageousExRunSimpleTestsCommand(sublime_plugin.WindowCommand):
     def is_enabled(self):
-        return os.getcwd() == os.path.join(sublime.packages_path(), 'VintageEx')
+        return os.getcwd() == os.path.join(sublime.packages_path(), 'VintageousEx')
 
     def run(self, suite_name):
         bucket = StringIO.StringIO()
@@ -59,7 +59,7 @@ class VintageExRunSimpleTestsCommand(sublime_plugin.WindowCommand):
         print_to_view(self.window.new_file(), bucket.getvalue)
 
 
-class VintageExRunDataFileBasedTests(sublime_plugin.WindowCommand):
+class VintageousExRunDataFileBasedTests(sublime_plugin.WindowCommand):
     def run(self, suite_name):
         self.window.open_file(TEST_DATA_PATH)
 

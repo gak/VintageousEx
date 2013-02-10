@@ -5,8 +5,8 @@ from collections import namedtuple
 import re
 from itertools import takewhile
 
-from VintageEx.vex import ex_error
-from VintageEx.vex import parsers
+from VintageousEx.vex import ex_error
+from VintageousEx.vex import parsers
 
 
 # Data used to parse strings into ex commands and map them to an actual
