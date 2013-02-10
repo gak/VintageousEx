@@ -3,7 +3,7 @@ VintageousEx
 
 <a href='http://www.pledgie.com/campaigns/19202'><img alt='Click here to lend your support to: Vintageous and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/19202.png?skin_name=chrome' border='0' /></a>
 
-A rendition of Vim's command-line mode for Sublime Text 2.
+A rendition of Vim's command-line mode for Sublime Text 3.
 
 <!-- License
 =======
